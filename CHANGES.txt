@@ -1,0 +1,14 @@
+= Version history =
+
+1.0 (2012-04-06): 
+
+- changed: made Elgg 1.8 compatible	
+
+0.2:
+
+- added: river event after validation
+- changed: icon after validation is now cropped instead of resized to have better looking icons
+	
+0.1 (2010-10-04):
+
+- initial version
