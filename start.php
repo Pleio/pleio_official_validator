@@ -4,12 +4,11 @@
 	require_once(dirname(__FILE__) . "/lib/hooks.php");
 	require_once(dirname(__FILE__) . "/lib/events.php");
 
-	function pleio_official_validator_init(){
+	function pleio_official_validator_init() {
 		// extend css
-		elgg_extend_view("css/elgg", "pleio_official_validator/css/site");
-		elgg_extend_view("css/admin", "pleio_official_validator/css/admin");
-		elgg_extend_view("js/admin", "pleio_official_validator/js/admin");
-		elgg_extend_view("js/elgg", "pleio_official_validator/js/site");
+		elgg_extend_view("css/admin", "css/pleio_official_validator/admin");
+		elgg_extend_view("js/admin", "js/pleio_official_validator/admin");
+		elgg_extend_view("js/elgg", "js/pleio_official_validator/site");
 		
 		// register pagehandler for nice URL's
 		elgg_register_page_handler("official_validator", "pleio_official_validator_page_handler");
@@ -24,7 +23,7 @@
 		elgg_register_plugin_hook_handler('register', 'menu:user_hover', 'pleio_official_validator_user_hover_menu');
 	}
 
-	function pleio_official_validator_pagesetup(){
+	function pleio_official_validator_pagesetup() {
 		// add admin menu for whitelist management
 		elgg_register_admin_menu_item("configure", "official_validator_whitelist", "settings");
 				
@@ -37,7 +36,7 @@
 				));
 	}
 	
-	function pleio_official_validator_page_handler($page){
+	function pleio_official_validator_page_handler($page) {
 		
 		switch($page[0]){
 			case "official":

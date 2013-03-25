@@ -1,15 +1,11 @@
 <?php
  
-$whitelist = elgg_get_plugin_setting("whitelist_domains", "pleio_official_validator");
-
-if(!empty($whitelist)){
-	$whitelist = explode(",", $whitelist);
+	$whitelist = elgg_get_plugin_setting("whitelist_domains", "pleio_official_validator");
 	
-	if(!is_array($whitelist)){
-		$whitelist = array($whitelist);
+	if(!empty($whitelist)){
+		$whitelist = string_to_tag_array($whitelist);
+	} else {
+		$whitelist = array();
 	}
-} else {
-	$whitelist = array();
-}
-
-echo elgg_view("pleio_official_validator/forms/whitelist", array("whitelist" => $whitelist));
+	
+	echo elgg_view("pleio_official_validator/forms/whitelist", array("whitelist" => $whitelist));

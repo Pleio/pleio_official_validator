@@ -1,5 +1,10 @@
 = Version history =
 
+x.x:
+- code cleanup
+- changed: handling of JS
+- removed: unused css
+
 1.0 (2012-04-06): 
 
 - changed: made Elgg 1.8 compatible	

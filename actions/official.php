@@ -20,4 +20,4 @@
 		register_error(elgg_echo("pleio_official_validator:action:official:error:input"));
 	}
 	
-	forward($_SERVER["HTTP_REFERER"]);
+	forward(REFERER);

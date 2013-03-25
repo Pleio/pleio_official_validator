@@ -5,10 +5,10 @@
 	$whitelist = get_input("domains");
 	$filter = "";
 	
-	if(!empty($whitelist)){
+	if (!empty($whitelist)) {
 		$filter = array();
 		
-		foreach($whitelist as $domain){
+		foreach ($whitelist as $domain) {
 			//url validation
 			if (preg_match ("/^([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/i", $domain)) {
 				// valid domain format

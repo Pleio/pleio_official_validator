@@ -5,15 +5,15 @@
 	$user_guid = (int) get_input("user_guid");
 	$code = get_input("code");
 	
-	if(!empty($user_guid) && !empty($code)){
-		if($user = get_user($user_guid)){
+	if (!empty($user_guid) && !empty($code)) {
+		if ($user = get_user($user_guid)) {
 			$user_code = $user->getPrivateSetting("pleio_official_validator_code");
 			
-			if(!empty($user_code) && ($user_code == $code)){
+			if (!empty($user_code) && ($user_code == $code)) {
 				$user->removePrivateSetting("pleio_official_validator_code");
 				$user->validated_official = true;
 				
-				if($user->save()){
+				if ($user->save()) {
 					// make new profile icon
 					pleio_official_validator_update_profile_icon($user);
 				

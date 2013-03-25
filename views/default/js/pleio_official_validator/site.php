@@ -1,5 +1,8 @@
 <?php ?>
-$(document).ready(function(){
+//<script>
+elgg.provide("elgg.pleio_official_validator");
+
+elgg.pleio_official_validator = function() {
 	$('#pleio_official_validator_official_add_form input[name="email"]').focus(function(){
 		if($(this).val() == elgg.echo("pleio_official_validator:official:forms:add:email")){
 			$(this).val("");
@@ -21,7 +24,7 @@ $(document).ready(function(){
 		return result;
 	});
 
-});
+}
 
 function pleio_official_validator_validate_email(email) {
 	var reg = /^([A-Za-z0-9_\-\.])+@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
@@ -38,3 +41,6 @@ function pleio_official_validator_official_revalidate(){
 	$('#pleio_official_validator_official_add_form').attr('action', '<?php echo elgg_get_site_url(); ?>action/official_validator/revalidate');
 	$('#pleio_official_validator_official_add_form').submit();
 }
+
+//register init hook
+elgg.register_hook_handler("init", "system", elgg.pleio_official_validator.init);

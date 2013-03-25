@@ -1,5 +1,6 @@
 <?php ?>
-$(document).ready(function(){
+//<script>
+elgg.pleio_official_validator_admin.init = function() {
 	$('#pleio_official_validator_whitelist_add_form input[name="domain"]').focus(function(){
 		if($(this).val() == elgg.echo("pleio_official_validator:whitelist:forms:add:domain")){
 			$(this).val("");
@@ -27,7 +28,7 @@ $(document).ready(function(){
 			$('#pleio_official_validator_whitelist_domains_form').submit();
 		}
 	});
-});
+}
 
 function pleio_official_validator_add_domain(){
 	var $domain = $('#pleio_official_validator_whitelist_add_form input[name="domain"]');
@@ -57,3 +58,6 @@ function pleio_official_validator_validate_domain(domain) {
 
 	return result;
 }
+
+//register init hook
+elgg.register_hook_handler("init", "system", elgg.pleio_official_validator_admin.init);

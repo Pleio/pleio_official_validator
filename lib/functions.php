@@ -1,28 +1,28 @@
 <?php 
 
-	function pleio_official_validator_check_email_domain($email){
+	function pleio_official_validator_check_email_domain($email) {
 		$result = false;
 		
-		if(!empty($email) && validate_email_address($email)){
+		if (!empty($email) && validate_email_address($email)) {
 			list($name, $u_domain) = explode("@", $email);
 			
-			if($domains = elgg_get_plugin_setting("whitelist_domains", "pleio_official_validator")){
+			if ($domains = elgg_get_plugin_setting("whitelist_domains", "pleio_official_validator")) {
 				$domains = explode(",", $domains);
 				
-				if(!is_array($domains)){
+				if (!is_array($domains)) {
 					$domains = array($domains);
 				}
 				
-				if(in_array($u_domain, $domains)){
+				if (in_array($u_domain, $domains)) {
 					$result = true;
 				} else {
-					foreach($domains as $domain){
+					foreach ($domains as $domain) {
 						$domain = trim($domain);
 						
-						if(substr($domain, 0, 1) == "."){
+						if (substr($domain, 0, 1) == ".") {
 							$len = strlen($domain);
 							
-							if(substr($u_domain, -$len) == $domain){
+							if (substr($u_domain, -$len) == $domain) {
 								$result = true;
 								break;
 							}
@@ -35,14 +35,14 @@
 		return $result;
 	}
 
-	function pleio_official_validator_create_code($email, $user_guid = 0){
+	function pleio_official_validator_create_code($email, $user_guid = 0) {
 		$result = false;
 		
-		if(empty($user_guid)){
+		if (empty($user_guid)) {
 			$user_guid = elgg_get_logged_in_user_guid();
 		}
 		
-		if(!empty($email) && !empty($user_guid)){
+		if (!empty($email) && !empty($user_guid)) {
 			$site_sectet = get_site_secret();
 			
 			$result = md5($user_guid . $email . $site_secret);
@@ -51,10 +51,11 @@
 		return $result;
 	}
 	
-	function pleio_official_validator_update_profile_icon($user, $skip_sizes = array()){
-		if(!empty($user->icontime)){
+	function pleio_official_validator_update_profile_icon($user, $skip_sizes = array()) {
+		
+		if (!empty($user->icontime)) {
 			
-			if(!is_array($skip_sizes)){
+			if (!is_array($skip_sizes)) {
 				$skip_sizes = array($skip_sizes);
 			}
 			
@@ -62,15 +63,16 @@
 			$white_space = 2;
 			$sizes = array("large" => 3, "medium" => 3, "small" => 2, "tiny" => 1);
 			
-			foreach($sizes as $size => $border_width){
+			foreach ($sizes as $size => $border_width) {
 				
-				if(!in_array($size, $skip_sizes)){
+				if (!in_array($size, $skip_sizes)) {
 					
 					// load original
 					$filehandler = new ElggFile();
 					$filehandler->owner_guid = $user->getGUID();
 					$filehandler->setFilename("profile/" . $user->getGUID() . $size . ".jpg");
-					if($filehandler->exists()){
+					
+					if ($filehandler->exists()) {
 						// create backup
 						$backupfile = new ElggFile();
 						$backupfile->owner_guid = $user->getGUID();
@@ -104,9 +106,11 @@
 						$selected_stamp = false;
 						$prefix = elgg_get_plugins_path() . "pleio_official_validator/_graphics/official_stamp_";
 						$stamps = array(10 => $prefix . "10.png", 20 => $prefix . "20.png", 30 => $prefix . "30.png");
-						foreach($stamps as $stamp_size => $file){
+						
+						foreach ($stamps as $stamp_size => $file) {
 							$min_size = 3 * $stamp_size;
-							if(($min_size < $original_width - (2 * $border_thickness)) && ($min_size < $original_height - (2 * $border_thickness))){
+							
+							if (($min_size < $original_width - (2 * $border_thickness)) && ($min_size < $original_height - (2 * $border_thickness))) {
 								$selected_stamp = $file;
 							} else {
 								// no need to continue
@@ -114,7 +118,7 @@
 							}
 						}
 						
-						if($selected_stamp){
+						if ($selected_stamp) {
 							// add a stamp
 							$stamp = imagecreatefrompng($selected_stamp);
 							imagealphablending($stamp, true);
@@ -137,13 +141,13 @@
 		}
 	}
 	
-	function pleio_official_validator_revert_profile_icon($user){
+	function pleio_official_validator_revert_profile_icon($user) {
 		// if backups are available restore and reset icontime else remove icontime 
 
 		// remove backups
 		$sizes = array("large", "medium", "small", "tiny");
 		
-		foreach($sizes as $size){
+		foreach ($sizes as $size) {
 			$current_file = new ElggFile();
 			$current_file->owner_guid = $user->getGUID();
 			$current_file->setFilename("profile/" . $user->getGUID() . $size . ".jpg");
@@ -154,12 +158,12 @@
 			$backupfile->owner_guid = $user->getGUID();
 			$backupfile->setFilename("profile/backup_" . $user->getGUID() . $size . ".jpg");
 			
-			if(!$backupfile->exists()){
+			if (!$backupfile->exists()) {
 				// backwards compatibility 15-12-2011
 				$backupfile->setFilename("profile/backup_" . $user->username . $size . ".jpg");
 			}
 			
-			if($backupfile->exists()){
+			if ($backupfile->exists()) {
 				$update_icontime = true;
 				
 				$restored_file = new ElggFile();
@@ -173,21 +177,21 @@
 			}	
 		}
 		
-		if($update_icontime){
+		if ($update_icontime) {
 			$user->icontime = time();
 		} else {
 			unset($user->icontime);
 		}
 	}
 
-	function pleio_official_validator_send_validation_mail($email, $code, $user_guid = 0, $revalidate = false){
+	function pleio_official_validator_send_validation_mail($email, $code, $user_guid = 0, $revalidate = false) {
 		$result = false;
 		
-		if(empty($user_guid)){
+		if (empty($user_guid)) {
 			$user_guid = elgg_get_logged_in_user_guid();
 		}
 		
-		if(!empty($email) && !empty($code) && ($user = get_user($user_guid))){
+		if (!empty($email) && !empty($code) && ($user = get_user($user_guid))) {
 			$link = elgg_get_site_url() . "official_validator/validate?user_guid=" . $user_guid . "&code=" . $code;
 			
 			$subject = elgg_echo("pleio_official_validator:validate:subject");
@@ -195,15 +199,15 @@
 			
 			$site = elgg_get_site_entity();
 			// make site email
-			if(!empty($site->email)){
-				if(!empty($site->name)){
+			if (!empty($site->email)) {
+				if (!empty($site->name)) {
 					$site_from = $site->name . " <" . $site->email . ">";
 				} else {
 					$site_from = $site->email;
 				}
 			} else {
 				// no site email, so make one up
-				if(!empty($site->name)){
+				if (!empty($site->name)) {
 					$site_from = $site->name . " <noreply@" . get_site_domain($site->getGUID()) . ">";
 				} else {
 					$site_from = "noreply@" . get_site_domain($site->getGUID());
@@ -213,7 +217,7 @@
 			
 			$result = elgg_send_email($site_from, $email_from, $subject, $body);
 			
-			if(!$revalidate){
+			if (!$revalidate) {
 				$user->setPrivateSetting("pleio_official_validator_email", $email);
 				$user->setPrivateSetting("pleio_official_validator_code", $code);
 				$user->validated_official = false;
