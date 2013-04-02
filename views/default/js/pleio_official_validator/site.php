@@ -2,7 +2,7 @@
 //<script>
 elgg.provide("elgg.pleio_official_validator");
 
-elgg.pleio_official_validator = function() {
+elgg.pleio_official_validator.init = function() {
 	$('#pleio_official_validator_official_add_form input[name="email"]').focus(function(){
 		if($(this).val() == elgg.echo("pleio_official_validator:official:forms:add:email")){
 			$(this).val("");

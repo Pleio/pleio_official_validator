@@ -1,5 +1,8 @@
 <?php ?>
 //<script>
+
+elgg.provide("elgg.pleio_official_validator_admin");
+
 elgg.pleio_official_validator_admin.init = function() {
 	$('#pleio_official_validator_whitelist_add_form input[name="domain"]').focus(function(){
 		if($(this).val() == elgg.echo("pleio_official_validator:whitelist:forms:add:domain")){
