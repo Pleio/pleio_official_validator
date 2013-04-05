@@ -1,6 +1,7 @@
 = Version history =
 
-x.x:
+1.1 (2013-04-05):
+
 - code cleanup
 - changed: handling of JS
 - removed: unused css
