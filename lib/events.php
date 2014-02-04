@@ -63,7 +63,7 @@ function pleio_official_validator_profile_icon_upload_handler($event, $object_ty
 	if (!empty($object) && ($object instanceof ElggUser)) {
 		if (!empty($object->validated_official)) {
 			// make new profile icon
-			pleio_official_validator_update_profile_icon($object);
+			pleio_official_validator_update_profile_icon($object, array(), true);
 		}
 	}
 	

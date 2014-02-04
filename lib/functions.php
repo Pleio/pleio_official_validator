@@ -65,10 +65,10 @@ function pleio_official_validator_create_code($email, $user_guid = 0) {
 /**
  * Generates new icons
  *
- * @param unknown_type $user
+ * @param ElggUser $user
  * @param unknown_type $skip_sizes
  */
-function pleio_official_validator_update_profile_icon($user, $skip_sizes = array()) {
+function pleio_official_validator_update_profile_icon(ElggUser $user, $skip_sizes = array(), $force_recreate_backup = false) {
 	
 	if (!empty($user->icontime)) {
 		
@@ -84,21 +84,24 @@ function pleio_official_validator_update_profile_icon($user, $skip_sizes = array
 			
 			if (!in_array($size, $skip_sizes)) {
 				
-				// load original
+				// load backup or create backup
 				$filehandler = new ElggFile();
 				$filehandler->owner_guid = $user->getGUID();
-				$filehandler->setFilename("profile/" . $user->getGUID() . $size . ".jpg");
+				$filehandler->setFilename("profile/backup_" . $user->getGUID() . $size . ".jpg");
+				if (!$filehandler->exists() || $force_recreate_backup) {
+					// create backup
+					$original = new ElggFile();
+					$original->owner_guid = $user->getGUID();
+					$original->setFilename("profile/" . $user->getGUID() . $size . ".jpg");
+					
+					if ($original->exists()) {
+						$filehandler->open("write");
+						$filehandler->write($original->grabFile());
+						$filehandler->close();
+					}
+				}
 				
 				if ($filehandler->exists()) {
-					// create backup
-					$backupfile = new ElggFile();
-					$backupfile->owner_guid = $user->getGUID();
-					$backupfile->setFilename("profile/backup_" . $user->getGUID() . $size . ".jpg");
-					
-					$backupfile->open("write");
-					$backupfile->write($filehandler->grabFile());
-					$backupfile->close();
-					
 					// create new icon
 					$original_image = ImageCreateFromJpeg($filehandler->getFilenameOnFilestore());
 					$original_width = ImageSx($original_image);
@@ -146,7 +149,8 @@ function pleio_official_validator_update_profile_icon($user, $skip_sizes = array
 						imagecopy($new_image, $stamp, $original_width - $border_thickness - $stamp_width - 2, $original_height - $border_thickness - $stamp_height - 2, 0, 0, $stamp_width, $stamp_height);
 					}
 					
-					// save
+					// save to profile icon file
+					$filehandler->setFilename("profile/" . $user->getGUID() . $size . ".jpg");
 					imagejpeg($new_image, $filehandler->getFilenameOnFilestore());
 				}
 			}

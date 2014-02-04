@@ -36,14 +36,12 @@ function pleio_official_validator_user_hover_menu($hook, $entity, $return_value,
  * @param unknown_type $params
  */
 function pleio_official_validator_pre_profile_icon_crop($hook, $entity_type, $returnvalue, $params) {
-	$username = get_input("username");
-
-	if (!empty($username)) {
-		$user = get_user_by_username($username);
-		
+	$guid = get_input("guid");
+	if (!empty($guid)) {
+		$user = get_user($guid);
 		if ($user) {
 			if (!empty($user->validated_official)) {
-				register_shutdown_function("pleio_official_validator_update_profile_icon", $user, "large");
+				register_shutdown_function("pleio_official_validator_update_profile_icon", $user, array(), true);
 			}
 		}
 	}
