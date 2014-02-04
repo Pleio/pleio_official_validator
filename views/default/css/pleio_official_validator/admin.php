@@ -1,4 +1,5 @@
 <?php ?>
+
 .pleio_official_validator_whitelist_domain {
 	padding-left: 20px;
 }

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 	$dutch = array(
 		
@@ -46,7 +46,7 @@ Dit is een geautomatiseerd bericht, aub niet antwoorden op dit bericht",
 		'pleio_official_validator:official_validated:cancel' => "Om je ambtenaar status te verwijderen klik op <a href='%s'>deze link</a>",
 		
 		// actions
-		// official 		
+		// official
 		'pleio_official_validator:action:official:error:input' => "Onjuiste invoer om de validatie te verwerken",
 		'pleio_official_validator:action:official:error:domain' => "Ongeldig domein voor validatie",
 		'pleio_official_validator:action:official:error:code' => "Fout tijdens het aanmaken van de validatie code, probeer het nogmaals",
@@ -74,5 +74,3 @@ Dit is een geautomatiseerd bericht, aub niet antwoorden op dit bericht",
 	);
 	
 	add_translation("nl", $dutch);
-
-?>
