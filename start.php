@@ -67,7 +67,7 @@ elgg_register_event_handler("login", "user", "pleio_official_validator_login_han
 elgg_register_event_handler("profileiconupdate", "user", "pleio_official_validator_profile_icon_upload_handler");
 
 // plugin hooks
-elgg_register_plugin_hook_handler("action", "avatar/cron", "pleio_official_validator_pre_profile_icon_crop");
+elgg_register_plugin_hook_handler("action", "avatar/crop", "pleio_official_validator_pre_profile_icon_crop");
 
 // register actions
 elgg_register_action("official_validator/whitelist", dirname(__FILE__) . "/actions/whitelist.php", "admin");
