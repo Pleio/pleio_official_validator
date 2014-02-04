@@ -209,10 +209,10 @@ function pleio_official_validator_revert_profile_icon(ElggUser $user) {
 /**
  * Functions thats sends out official validator emails
  *
- * @param unknown_type $email
- * @param unknown_type $code
- * @param unknown_type $user_guid
- * @param unknown_type $revalidate
+ * @param string $email
+ * @param string $code
+ * @param int $user_guid
+ * @param boolean $revalidate
  *
  * @return Ambigous <boolean, mixed, NULL>
  */
