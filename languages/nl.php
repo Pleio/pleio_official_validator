@@ -11,8 +11,6 @@
 		
 		// views
 		// whitelist
-		'pleio_official_validator:whitelist:title' => "Beheer ambtenaar domeinen",
-		
 		'pleio_official_validator:whitelist:forms:add:description' => "Hier kun je een domein toevoegen aan de whitelist. Dit maakt het mogelijk voor gebruikers om zich te valideren als een ambtenaar.<br />Geef alles op <b>achter</b> het @-teken (bijvoorbeeld: pleio.nl). Duplicaten worden automatisch gefilterd alsmede ongeldige domeinnamen.",
 		'pleio_official_validator:whitelist:forms:add:domain' => "Geef een domein naam op",
 		
@@ -21,10 +19,7 @@
 		
 		// official email
 		'pleio_official_validator:official:forms:add:description' => "Vul een ambtenaar e-mail adres in om het validatie proces te starten. Het e-mail adres is niet publiekelijk beschikbaar en zal nooit gebruikt worden voor communicatie, behalve 1 validatie mail.",
-		'pleio_official_validator:official:forms:add:email' => "Geef hier een ambtenaar e-mail addres op",
-		
-		'pleio_official_validator:official:validate:error:email' => "Het opgegeven e-mail adres is geen geldig e-mail adres",
-		'pleio_official_validator:official:validate:error:email_domain' => "Het opgegeven e-mail domein staat niet op de lijst met goedgekeurde domeinen. Je kunt niet worden gevalideerd met dit e-mail adres",
+		'pleio_official_validator:official:forms:add:email' => "Geef hier een ambtenaar e-mail adres op",
 		
 		'pleio_official_validator:official:forms:pending:description' => "Je hebt reeds een validatie aangevraagd op het e-mail adres: <b>%s</b>. Dit verzoek wacht op bevestiging. Controleer je inbox (of de spam map) voor het verzoek tot bevestiging. Klik op de link in het bericht om je e-mail adres te bevestigen.<br /> Je kunt het validatie bericht nogmaals laten versturen, of je kunt het e-mail adres aanpassen waarop je gevalideerd wordt.",
 		'pleio_official_validator:official:forms:pending:revalidate' => "Herzend validatie bericht",

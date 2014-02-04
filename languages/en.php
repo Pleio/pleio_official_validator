@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 	$english = array(
 		
@@ -11,8 +11,6 @@
 		
 		// views
 		// whitelist
-		'pleio_official_validator:whitelist:title' => "Manage domain whitelist",
-		
 		'pleio_official_validator:whitelist:forms:add:description' => "Here you can add a domain to the whitelist. This will allow an user to be validated as a (goverment) official.<br />Please fill in everything <b>after</b> the @-sign (example: pleio.nl). Duplicate domains are automatically filtered as are invalid domain names.",
 		'pleio_official_validator:whitelist:forms:add:domain' => "Fill in a domain name",
 		
@@ -22,9 +20,6 @@
 		// official email
 		'pleio_official_validator:official:forms:add:description' => "Fill in an official e-mail address below to begin the validation process. The e-mail addresses will not be publicly available and you'll never receive any communication on this e-mail address other than 1 verification e-mail.",
 		'pleio_official_validator:official:forms:add:email' => "Enter an official e-mail address here",
-		
-		'pleio_official_validator:official:validate:error:email' => "The supplied e-mail address is not a valid e-mail address",
-		'pleio_official_validator:official:validate:error:email_domain' => "The e-mail domain is not on the allowed domain list. You can't be validated with this e-mail address",
 		
 		'pleio_official_validator:official:forms:pending:description' => "You already requested validation on the e-mail address: <b>%s</b>. This request is awaiting your confirmation. Please check your inbox (or the spam folder) to find a message requesting confirmation. Click on the link in this e-mail to validate your e-mail address.<br /> You can also request that the validation e-mail be resend, or you can change the e-mail address to which to send the validation e-mail.",
 		'pleio_official_validator:official:forms:pending:revalidate' => "Resend validation mail",
@@ -46,7 +41,7 @@ This is an automated message please don't reply",
 		'pleio_official_validator:official_validated:cancel' => "To cancel your official status click on <a href='%s'>this link</a>",
 		
 		// actions
-		// official 		
+		// official
 		'pleio_official_validator:action:official:error:input' => "Incorrect input to process the validation request",
 		'pleio_official_validator:action:official:error:domain' => "Incorrect domain for the e-mail address",
 		'pleio_official_validator:action:official:error:code' => "Unable to create a validation code, please try again",
