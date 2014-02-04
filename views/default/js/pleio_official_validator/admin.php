@@ -37,7 +37,7 @@ function pleio_official_validator_add_domain(){
 	var $domain = $('#pleio_official_validator_whitelist_add_form input[name="domain"]');
 
 	if(pleio_official_validator_validate_domain($domain.val())){
-		var add_html = "<div class='pleio_official_validator_whitelist_domain'>";
+		var add_html = "<div class='pleio_official_validator_whitelist_domain pll'>";
 		add_html += "<input type='hidden' name='domains[]' value='" + $domain.val() + "' />";
 		add_html += $domain.val();
 		add_html += "</div>";

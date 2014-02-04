@@ -3,7 +3,7 @@
 	<name>Pleio Official Validator</name>
 	<author>ColdTrick IT Solutions</author>
 	<version>1.1</version>
-	<description>Validate the email address of an user to an (govenment) official whitelist</description>
+	<description>Validate the email address of an user to an (government) official whitelist</description>
 	<website>http://www.coldtrick.com/</website>
 	<repository>https://github.com/Pleio/pleio_official_validator</repository>
 	<bugtracker>https://github.com/Pleio/pleio_official_validator/issues</bugtracker>

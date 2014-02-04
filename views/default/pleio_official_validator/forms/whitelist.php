@@ -21,7 +21,7 @@ if (!empty($whitelist)) {
 	sort($whitelist);
 	
 	foreach ($whitelist as $domain) {
-		$domains_formbody .= "<div class='pleio_official_validator_whitelist_domain'>";
+		$domains_formbody .= "<div class='pleio_official_validator_whitelist_domain pll'>";
 		$domains_formbody .= elgg_view("input/hidden", array("name" => "domains[]", "value" => $domain));
 		$domains_formbody .= $domain;
 		$domains_formbody .= "</div>";
