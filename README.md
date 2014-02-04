@@ -1,6 +1,6 @@
 Pleio Official Validator
 ========================
-Mark a user as a validatd official based on their e-mail address domain
+Mark a user as a validated official based on their e-mail address domain
 
 Features
 --------
